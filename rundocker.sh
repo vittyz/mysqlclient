@@ -1,1 +1,1 @@
-docker run -it -v `pwd`/sql:/sql mysqlclient sh
+docker run -it --rm -v `pwd`/sql:/sql mysqlclient sh
