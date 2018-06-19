@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ $# = "0" ]
 then
@@ -20,15 +20,22 @@ else
    export filesql=$6 
 fi 
 
+echo "Host="$host
+echo "user="$user
+echo "passwd="$passwd
+echo "database="$database
+echo "command="$cmd
+echo "filesql="$filesql
 
-if [ $1 = "sh" ]
+if [ $host = "sh" ]
 then
    sh
+   exit
 else
 	#echo " 1 "$1" 2 "$2" 3 "$3" 4 "$4" 5 "$5" 6 "$6
         if [ $cmd = "dump" ]
 	then
-		mysqldump -h $host -u $user -p$passwd $database > /sql/$filesql
+		mysqldump -Y -h $host -u $user -p$passwd $database > /sql/$filesql
 		chmod 777 /sql/$filesql
 		exit 0;
 	fi
@@ -38,7 +45,7 @@ else
 	
 		mysql --host $host --user=$user --password=$passwd --database=$database < $filesql 
 	else
-		mysql --host $host --user=$user --password=$passwd --database=$database $cmd
+		mysql --host $host --user=$user --password=$passwd --database=$database --execute="$cmd"
 	fi
   
 fi 
