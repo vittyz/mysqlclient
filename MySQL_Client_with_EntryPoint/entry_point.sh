@@ -18,7 +18,10 @@ else
    export database=$4
    export cmd=$5
    export filesql=$6 
+   export needschema=$8
+   export table=$7
 fi 
+
 
 echo "Host="$host
 echo "user="$user
@@ -26,6 +29,8 @@ echo "passwd="$passwd
 echo "database="$database
 echo "command="$cmd
 echo "filesql="$filesql
+echo "Need Schema="$needschema
+echo "table="$table
 
 if [ $host = "sh" ]
 then
@@ -35,7 +40,8 @@ else
 	#echo " 1 "$1" 2 "$2" 3 "$3" 4 "$4" 5 "$5" 6 "$6
         if [ $cmd = "dump" ]
 	then
-		mysqldump -Y -h $host -u $user -p$passwd $database > /sql/$filesql
+		echo "mysqldump -Y -h $host -u $user -p$passwd $needschema $database $table> /sql/$filesql"
+		mysqldump -Y -h $host -u $user -p$passwd $needschema $database $table> /sql/$filesql
 		chmod 777 /sql/$filesql
 		exit 0;
 	fi
