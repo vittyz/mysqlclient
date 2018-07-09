@@ -6,7 +6,7 @@ RUN env
 RUN set | grep proxy
 
 
-RUN apk add --update mysql-client && rm -rf /var/cache/apk/*
+RUN apk add --update mysql-client && apk add bash&& rm -rf /var/cache/apk/* 
 
 VOLUME /app
 
