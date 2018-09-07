@@ -22,15 +22,18 @@ else
    export table=$7
 fi 
 
-
-echo "Host="$host
-echo "user="$user
-echo "passwd="$passwd
-echo "database="$database
-echo "command="$cmd
-echo "filesql="$filesql
-echo "Need Schema="$needschema
-echo "table="$table
+debug==`printenv debug`
+if [ $debug="true" ]
+then   
+   echo "Host="$host
+   echo "user="$user
+   echo "passwd="$passwd
+   echo "database="$database
+   echo "command="$cmd
+   echo "filesql="$filesql
+   echo "Need Schema="$needschema
+   echo "table="$table
+fi
 
 if [ $host = "sh" ]
 then
